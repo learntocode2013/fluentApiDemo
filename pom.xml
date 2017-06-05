@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.learn.fluent.api</groupId>
+  <artifactId>fluent-demo</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>fluent-demo</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <!-- # Junit 5 dependency -->
+    <!-- # To write Junit-5 test classes/extensions, we just need the junit-jupiter-api(s) -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.0.0-M3</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- # This is needed to run Junit-5 tests with Junit-4 -->
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-runner</artifactId>
+      <version>1.0.0-M3</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- # To execute the Junit-5 test classes, we need the jupiter engine(and its dependencies) in the runtime classpath -->
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.0.0-M3</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+</project>
