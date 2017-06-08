@@ -1,6 +1,6 @@
 package org.learn.fluent.api;
 
-public interface House
+public class House<Child extends House<Child>>
 {
 
 }

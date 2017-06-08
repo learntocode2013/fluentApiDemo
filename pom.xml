@@ -41,5 +41,12 @@
       <version>5.0.0-M3</version>
       <scope>runtime</scope>
     </dependency>
+
+    <!-- Use helper libraries. We do not want to re-invent the wheel -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.5</version>
+    </dependency>
   </dependencies>
 </project>

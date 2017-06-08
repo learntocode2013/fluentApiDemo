@@ -17,6 +17,12 @@ import java.time.LocalDateTime;
  *     <li>Call order of the fluent public methods do not matter</li>
  * </ol>
  *
+ * <b>--- Problem with this approach ---</b>
+ * <ol>
+ *     <li>No way to enforce method call order</li>
+ *     <li>No way to validate proper state of created object. Client owns this responsibility</li>
+ * </ol>
+ *
  */
 public abstract class DigitalDevice<Child extends DigitalDevice<Child>>
 {

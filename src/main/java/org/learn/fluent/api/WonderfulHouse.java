@@ -6,11 +6,19 @@ package org.learn.fluent.api;
  *     <li>Enforce method call order</li>
  *     <li>Allow terminal methods only after proper state is set</li>
  * </ol>
+ *
+ * <b>--- Problem with this approach ---</b>
+ * <ol>
+ *     <li>Too many interfaces required to honor call ordering</li>
+ *     <li>No way to validate proper state of created object. Client owns this responsibility</li>
+ * </ol>
  */
-public class WonderfulHouse implements House, Planned, Approved, Contracted, ConstructionTask, Completable
+public class WonderfulHouse implements Planned, Approved, Contracted, ConstructionTask, Completable
 {
     private double _maxBudget ;
     private BluePrint _bluePrint;
+    private enum STATE { INPROGRESS, COMPLETED } ;
+    private STATE _builtStatus;
 
     public WonderfulHouse()
     {
@@ -18,9 +26,9 @@ public class WonderfulHouse implements House, Planned, Approved, Contracted, Con
     }
 
     // Allow instantiation only via a factory method
-    public static Planned start()
+    public Planned start()
     {
-        return new WonderfulHouse();
+        return this;
     }
 
     @Override
@@ -51,8 +59,22 @@ public class WonderfulHouse implements House, Planned, Approved, Contracted, Con
     }
 
     @Override
-    public WonderfulHouse commenceConstruction()
+    public void commenceConstruction()
     {
-        return this;
+        this._builtStatus = STATE.COMPLETED;
+    }
+
+    public boolean isCompleted()
+    {
+        return this._builtStatus.equals(STATE.COMPLETED);
+    }
+
+    @Override
+    public String toString() {
+        return "WonderfulHouse{" +
+               "_maxBudget=" + _maxBudget +
+               ", _bluePrint=" + _bluePrint +
+               ", _builtStatus=" + _builtStatus +
+               '}';
     }
 }

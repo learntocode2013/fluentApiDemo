@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class WonderfulHouseTest
 {
@@ -25,12 +26,18 @@ public class WonderfulHouseTest
     @DisplayName("Verifies that a house is built as per standard norms")
     void houseIsComplete()
     {
-        House house = WonderfulHouse.start()
-                                    .chooseBlueprint(BluePrint.from(bluePrintDetails))
-                                    .setBudget(MAX_BUDGET)
-                                    .getAllApprovals()
-                                    .chooseContractor(Contractor.DEFAULT_CONTRACTOR)
-                                    .commenceConstruction();
+        WonderfulHouse house = new WonderfulHouse();
+        house.start()
+             .chooseBlueprint(BluePrint.from(bluePrintDetails))
+             .setBudget(MAX_BUDGET)
+             .getAllApprovals()
+             .chooseContractor(Contractor.DEFAULT_CONTRACTOR)
+             .commenceConstruction();
+
+        System.out.printf("Constructed house : %s %n",house);
+        assertAll("Constructed house is not in valid state",
+                  () -> { assertTrue(house.isCompleted()); }
+                  );
 
 
     }

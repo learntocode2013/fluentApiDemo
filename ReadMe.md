@@ -51,3 +51,7 @@ and plm.Network. gives you the things you can do with the network interface.  pl
 
 ***Additional literature***
 https://www.hanselman.com/blog/TheWeeklySourceCode14FluentInterfaceEdition.aspx
+https://dzone.com/articles/factories-builders-and-fluent-
+https://en.wikipedia.org/wiki/Fluent_interface
+https://en.wikipedia.org/wiki/Bounded_quantification#F-bounded_quantification
+

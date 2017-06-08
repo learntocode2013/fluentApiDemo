@@ -16,4 +16,11 @@ public class BluePrint
     {
         return new BluePrint(details);
     }
+
+    @Override
+    public String toString() {
+        return "BluePrint{" +
+               "_details='" + _details + '\'' +
+               '}';
+    }
 }
