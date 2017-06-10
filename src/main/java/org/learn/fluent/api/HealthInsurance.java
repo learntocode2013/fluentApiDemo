@@ -1,71 +1,83 @@
 package org.learn.fluent.api;
 
-import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
-//======================== A domain class with getters and setters ================//
+import java.util.List;
+import java.util.stream.Stream;
+
+/**
+ * An immutable domain class with getters only
+ */
 public class HealthInsurance
 {
-    // mandatory attributes
-    private int  proposerAge;
-    private long proposedSumInsured;
-
-    // optional attributes
-    private List<String> preExistingIllness;
-    private List<String> familyHealthIssues;
-    private List<String> proposedRiders;
-
     public enum STAGE { INFORMATION_REQUIRED, APPLIED, PROCESSING, ISSUED, REJECTED };
-    private STAGE _status;
 
-    public void setProposerAge(int proposerAge)
+    // mandatory attributes
+    private final String        proposerName;
+    private final int           proposerAge;
+    private final long          proposedSumInsured;
+    private final List<String>  preExistingIllness;
+    private final List<String>  familyHealthIssues;
+    private final List<String>  proposedRiders;
+    private STAGE         status;
+
+    public HealthInsurance(HealthInsuranceBuilder constructionBuilder)
     {
-        this.proposerAge = proposerAge;
+        proposerName        = constructionBuilder.getProposerName();
+        proposerAge         = constructionBuilder.getProposerAge();
+        proposedSumInsured  = constructionBuilder.getProposedSumInsured();
+        preExistingIllness  = constructionBuilder.getDeclaredPreExistingIllness();
+        familyHealthIssues  = constructionBuilder.getFamilyHealthIssues();
+        proposedRiders      = constructionBuilder.getOptedRiders();
+        status              = STAGE.APPLIED;
     }
 
-    public void setProposedSumInsured(long proposedSumInsured)
+    public int getProposerAge(int proposerAge)
     {
-        this.proposedSumInsured = proposedSumInsured;
+        return proposerAge;
     }
 
-    public void setPreExistingIllness(List<String> existingIllness)
+    public long getProposedSumInsured(long proposedSumInsured)
     {
-        preExistingIllness = existingIllness;
+        return proposedSumInsured;
     }
 
-    public void setFamilyHealthIssues(List<String> familyHealthIssues)
+    public Stream<String> getPreExistingIllness()
     {
-        this.familyHealthIssues = familyHealthIssues;
+       return preExistingIllness.stream();
     }
 
-    public void setProposedRiders(List<String> optionalRiders)
-    {
-        proposedRiders = optionalRiders;
-    }
+    public List<String> getFamilyHealthIssues() { return familyHealthIssues ; }
 
-    public void setState(STAGE currentStage)
-    {
-        _status = currentStage;
-    }
+    public List<String> getProposedRiders() { return proposedRiders ; }
 
-    public STAGE getStatus() { return _status ; }
+    public STAGE getStatus() { return status ; }
 
     // Client must know when to check for state validation
     public void validate()
     {
+        String errMsg = StringUtils.EMPTY;
+
         if( proposedSumInsured < 0 )
         {
-            throw new IllegalStateException("Sum assured must be a positive number");
+            errMsg = "Sum assured must be a positive number";
         }
 
         if(proposerAge < 18 || proposerAge > 70)
         {
-            throw new IllegalStateException("Proposer age must be between 18 and 70");
+            errMsg = "Proposer age must be between 18 and 70";
         }
 
         if(preExistingIllness != null && !preExistingIllness.isEmpty()
            && (familyHealthIssues == null || familyHealthIssues.isEmpty()))
         {
-            throw new IllegalStateException("Family history is missing from application");
+            errMsg = "Family history is missing from application";
+        }
+
+        if(StringUtils.isNotEmpty(errMsg))
+        {
+            status = STAGE.INFORMATION_REQUIRED;
+            throw new IllegalStateException(errMsg);
         }
     }
 }
