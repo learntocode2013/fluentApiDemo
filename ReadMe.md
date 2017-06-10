@@ -26,6 +26,12 @@ the need of validating object state before persistence/business logic is applied
     b. How to allow terminal methods to be called only after mandatory state has been set.     <br>
 
 
+---- **Project model** ----
+                                                                                                <br>
+                                                                                                <br>
+All the semantic models(objects populated by a DSL) used in this project are in-memory object   <br>
+models.
+
 ---- **Conclusion(s) drawn** ----
                                                                                               <br>
 1. Fluent interfaces are more about context, and are so much more than just ways to configure <br>

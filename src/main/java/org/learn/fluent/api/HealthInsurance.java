@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * An immutable domain class with getters only
+ * <ul>
+ *     <li>This class forms the semantic model for our Health Insurance DSL.</li>
+ *     <li>It is an immutable class with getters only.</li>
+ *     <li>It is a pure data holder and not a domain model.</li>
+ * </ul>
  */
 public class HealthInsurance
 {
@@ -53,6 +57,13 @@ public class HealthInsurance
 
     public STAGE getStatus() { return status ; }
 
+    /**
+     * <ul>
+     *     <li>This is the best place for validations because all the information and
+     *         structures are in place here.
+     *     </li>
+     * </ul>
+     */
     // Client must know when to check for state validation
     public void validate()
     {

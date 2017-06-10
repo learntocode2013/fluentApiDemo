@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Semantic wrapper over @{@link HealthInsurance} domain class.
+ * Expression builder providing a fluent wrapper over @{@link HealthInsurance}  <br>
+ * domain class.
  * <br><br>
  * --- Pros of this approach ---
  * <ul>
- *     <li>Public methods are exposed fluently</li>
+ *     <li>Public methods are exposed fluently through this class.</li>
  *     <li>Immutable domain class @{@link HealthInsurance} is built incrementally</li>
+ *     <li>The domain class adheres to the command-query like API</li>
+ *     <li>The building logic is separate from the execution logic</li>
  * </ul>
  *
  * --- Cons of this approach ---
