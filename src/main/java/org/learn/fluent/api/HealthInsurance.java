@@ -25,7 +25,7 @@ public class HealthInsurance
     private final List<String>  proposedRiders;
     private STAGE         status;
 
-    public HealthInsurance(HealthInsuranceBuilder constructionBuilder)
+    public HealthInsurance(ExpressionBuilder constructionBuilder)
     {
         proposerName        = constructionBuilder.getProposerName();
         proposerAge         = constructionBuilder.getProposerAge();

@@ -24,8 +24,21 @@ the need of validating object state before persistence/business logic is applied
 
     a. How to ensure the method call order so that the object state is correctly set.          <br>
     b. How to allow terminal methods to be called only after mandatory state has been set.     <br>
+    c. How to conditionally execute a fluent method.                                            <br>                                                 
 
 
+---- **Techniques to create fluent interfaces** ----
+                                                                                                <br>
+1. Method chaining                                                                              <br>
+2. Factory classes                                                                              <br>
+3. Named parameters                                                                             <br>
+
+In languages that support them (including Smalltalk, and C#) named parameters provide a way     <br>
+to include additional "syntax" in a method call, improving readability.                         <br>
+
+<b>myDocument.Save(toFile:"SampleFile.txt", withPermissions:FilePermissions.ReadOnly);</b>       <br>
+
+                                                                                                                                                                                                
 ---- **Project model** ----
                                                                                                 <br>
                                                                                                 <br>
@@ -64,5 +77,6 @@ https://en.wikipedia.org/wiki/Fluent_interface                                  
 https://en.wikipedia.org/wiki/Bounded_quantification#F-bounded_quantification      <br>
 https://blog.allinsight.de/fluent-interface-pattern/                               <br>
 http://www.erikschierboom.com/2014/10/08/fluent-interfaces/                        <br>
+https://blog.jooq.org/2012/01/05/the-java-fluent-api-designer-crash-course/        <br>
 http://www.unquietcode.com/blog/2011/programming/using-generics-to-build-fluent-apis-in-java/
 

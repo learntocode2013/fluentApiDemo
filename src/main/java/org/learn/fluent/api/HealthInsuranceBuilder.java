@@ -11,9 +11,9 @@ import java.util.List;
  * <br><br>
  * --- Pros of this approach ---
  * <ul>
- *     <li>Public methods are exposed fluently through this class.</li>
+ *     <li>All fluent methods are limited to and exposed through this class</li>
  *     <li>Immutable domain class @{@link HealthInsurance} is built incrementally</li>
- *     <li>The domain class adheres to the command-query like API</li>
+ *     <li>The domain class adheres to the conventional command-query like API</li>
  *     <li>The building logic is separate from the execution logic</li>
  * </ul>
  *
@@ -21,8 +21,16 @@ import java.util.List;
  * <ul>
  *     <li>Attributes of domain class @{@link HealthInsurance} duplicated in here</li>
  * </ul>
+ *
+ * --- Points to be noted ---
+ * <ul>
+ *     <li>Key insight to write fluent methods is to never return void, but to return
+ *         some interface type on which further calls can be made. Returning 'this' is
+ *         just one such option.
+ *     </li>
+ * </ul>
  */
-public class HealthInsuranceBuilder
+public class HealthInsuranceBuilder implements ExpressionBuilder
 {
     // mandatory attributes
     private String  _proposerName;
